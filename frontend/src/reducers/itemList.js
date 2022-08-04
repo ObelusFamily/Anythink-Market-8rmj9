@@ -3,6 +3,7 @@ import {
   ITEM_UNFAVORITED,
   SET_PAGE,
   APPLY_TAG_FILTER,
+  APPLY_TITLE_FILTER,
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   CHANGE_TAB,
@@ -29,12 +30,18 @@ const reducer = (state = {}, action) => {
           return item;
         }),
       };
+    case APPLY_TITLE_FILTER: return {
+      ...state,
+      pager: action.pager,
+      title:action.title,
+    };
     case SET_PAGE:
       return {
         ...state,
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         currentPage: action.page,
+         title: action.title,
       };
     case APPLY_TAG_FILTER:
       return {
