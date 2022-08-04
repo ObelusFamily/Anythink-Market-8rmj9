@@ -1,4 +1,5 @@
 import React from "react";
+import { agent } from "superagent";
 import logo from "../../imgs/logo.png";
 const Banner = (props) => {
   return (
@@ -9,7 +10,9 @@ const Banner = (props) => {
           <span id="get-part">A place to get</span>
           <div class="input-group rounded w-25 w-25 ml-2 mr-2">
             <input type="search" onKeyUp={(e) => {
-              props.onSearchFilter(e.currentTarget.value)
+              props.onSearchFilter( e.currentTarget.value,
+      (page) => agent.Items.byTitle(e.currentTarget.value, page),
+      agent.Items.byTitle(e.currentTarget.value))
 
             }} class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
           </div>
